@@ -1,56 +1,55 @@
 package com.thoughtworks;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.*;
 
-public class MemoryRepository implements Repository<String, Student> {
-    private LinkedHashMap<String, Student> stuList = null;
+//更改：MemoryRepository 仍然是泛型
+public class MemoryRepository <I, E> implements Repository<I, E>  {
+    //定义和使用的时候用接口 Map
+    private Map<I, E> stuList = null;
 
+
+    //增加newHashMap
     public MemoryRepository() {
-    }
-
-    public MemoryRepository(LinkedHashMap<String, Student> stuList) {
-        this.stuList = stuList;
+        this.stuList = new HashMap<>();
     }
 
     @Override
-    public void save(Student student) {
-        stuList.put(student.getId(), student);
+    public void save(I i, E e) {
+        stuList.put(i, e);
     }
 
     @Override
-    public Student getId(String id) {
-        Student stu = stuList.get(id);
-        return stu;
+    public E getId(I i) {
+        return stuList.get(i);
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(I id) {
         stuList.remove(id);
     }
 
+
     @Override
-    public void update(String id, Student newStudent) {
-        stuList.put(id, newStudent);
+    //原来是put，可以不用再多一次判断
+    public void update(I i, E e) {
+        stuList.replace(i, e);
     }
 
     @Override
-    public ArrayList<Student> list() {
-        ArrayList<Student> list = new ArrayList<>();
-        Set<String> set = stuList.keySet();
-        Iterator<String> it = set.iterator();
+    public ArrayList<E> list() {
+        ArrayList<E> list = new ArrayList<>();
+        Set<I> set = stuList.keySet();
+        Iterator<I> it = set.iterator();
 
         while (it.hasNext()) {
-            String id = it.next();
-            Student stu = stuList.get(id);
-            list.add(stu);
+            I i = it.next();
+            E e = stuList.get(i);
+            list.add(e);
         }
+
         return list;
     }
-
 
 }
 

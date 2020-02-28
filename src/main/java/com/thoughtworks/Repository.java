@@ -3,7 +3,7 @@ package com.thoughtworks;
 import java.util.ArrayList;
 
 public interface Repository<I, E> {
-    void save(E entity);
+    void save(I i, E entity);
 
     E getId(I id);
 
