@@ -2,14 +2,14 @@ package com.thoughtworks;
 
 import java.util.ArrayList;
 
-public interface Repository<I, E> {
-    void save(I i, E entity);
+public interface Repository<String, E> {
+    void save(String i, E entity);
 
-    E getId(I id);
+    E getId(String id);
 
-    void delete(I id);
+    void delete(String id);
 
-    void update(I id, E entity);
+    void update(String id, E entity);
 
     ArrayList<E> list();
 }

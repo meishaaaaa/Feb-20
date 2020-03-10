@@ -1,7 +1,5 @@
 package com.thoughtworks;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class App {
 
@@ -12,7 +10,7 @@ public class App {
         Student zhaoL = new Student("6", "赵六");
         Student qianQ = new Student("7", "钱七");
 
-        MemoryRepository<String, Student> repository = new MemoryRepository();
+        MemoryRepository<String, Student> repository = new MemoryRepository<>();
         repository.save(zhangS.getId(),zhangS);
         repository.save(liS.getId(),liS);
         repository.save(wangW.getId(),wangW);
